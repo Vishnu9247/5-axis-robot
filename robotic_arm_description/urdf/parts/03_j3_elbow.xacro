@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- J3: bend the forearm at the elbow. Distances in meters; angles in radians. -->
+  <!-- forearm_link: a rigid assembly of parts. The mesh supplies its shape; visual is appearance, collision is contact geometry. -->
+  <link name="forearm_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/forearm_link.stl" />
+      </geometry>
+      <material name="forearm_link_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/forearm_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- j3: connects upper_arm_link to forearm_link. Origin locates the joint in the parent frame. Axis gives the movement direction in the joint frame. Range: -115.0 to 115.0 degrees. -->
+  <joint name="j3" type="revolute">
+    <parent link="upper_arm_link" />
+    <child link="forearm_link" />
+    <origin xyz="0.25 0 0" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-2.007128639793479" upper="2.007128639793479" effort="0" velocity="0.5235987755982988" />
+  </joint>
+</robot>

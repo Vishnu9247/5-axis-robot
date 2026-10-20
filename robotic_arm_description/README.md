@@ -1,5 +1,7 @@
 # Five-axis arm with parallel gripper - ROS 2 / RViz2
 
+**For an easy introduction, open `HOW_TO_READ_THE_ROBOT.md` in the package, or `START HERE - Understanding the Robot.md` in the delivery folder.**
+
 This is a separate assembly and visualization package. The previously finalized robot and gripper print folders are preserved. No new print parts are required for the tool mounting interface.
 
 ## Open the model
@@ -11,7 +13,7 @@ Import `Assembly/Five Axis Arm With Gripper.f3d` into Fusion 360. The gripper mo
 Use a Linux environment with ROS 2 already installed and sourced. Copy the included `ros2_ws` folder there. Install the viewing dependencies:
 
 ```sh
-sudo apt install ros-$ROS_DISTRO-rviz2 ros-$ROS_DISTRO-robot-state-publisher ros-$ROS_DISTRO-joint-state-publisher-gui python3-colcon-common-extensions
+sudo apt install ros-$ROS_DISTRO-xacro ros-$ROS_DISTRO-rviz2 ros-$ROS_DISTRO-robot-state-publisher ros-$ROS_DISTRO-joint-state-publisher-gui python3-colcon-common-extensions
 cd ros2_ws
 colcon build --symlink-install
 source install/setup.bash
@@ -43,7 +45,9 @@ ROS 2 and RViz2 are unavailable on the authoring computer. XML, meshes, tree con
 ## Files
 
 - `Assembly`: separate editable Fusion archive.
-- `ros2_ws/src/robotic_arm_description/urdf/robot.urdf`: robot description.
+- `ros2_ws/src/robotic_arm_description/urdf/robot.urdf.xacro`: short main description, including one file per joint.
+- `ros2_ws/src/robotic_arm_description/HOW_TO_READ_THE_ROBOT.md`: illustrated-by-examples reading guide.
+- `urdf/robot.urdf`: generated compatibility copy; regenerate it after editing the smaller files.
 - `meshes`: CAD assembly meshes in meters.
 - `launch/display.launch.py`: RViz2 and state publishers.
 - `scripts/pose_preview.py`: joint-state visualization preview.

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- J1: rotate the whole arm around the vertical base axis. Distances in meters; angles in radians. -->
+  <!-- shoulder_link: a rigid assembly of parts. The mesh supplies its shape; visual is appearance, collision is contact geometry. -->
+  <link name="shoulder_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/shoulder_link.stl" />
+      </geometry>
+      <material name="shoulder_link_color">
+        <color rgba="0.85 0.32 0.12 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/shoulder_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- j1: connects base_link to shoulder_link. Origin locates the joint in the parent frame. Axis gives the movement direction in the joint frame. Range: -160.0 to 160.0 degrees. -->
+  <joint name="j1" type="revolute">
+    <parent link="base_link" />
+    <child link="shoulder_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.792526803190927" upper="2.792526803190927" effort="0" velocity="0.5235987755982988" />
+  </joint>
+</robot>

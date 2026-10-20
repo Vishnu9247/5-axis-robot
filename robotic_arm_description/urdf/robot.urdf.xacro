@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- START HERE: this short file assembles the smaller files below. -->
+<!-- Read HOW_TO_READ_THE_ROBOT.md first. RViz launch expands this file automatically. -->
+<robot name="compact_five_axis_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Stationary base and bench reference. -->
+  <xacro:include filename="parts/00_base.xacro" />
+
+  <!-- J1: rotate the whole arm around the vertical base axis. -->
+  <xacro:include filename="parts/01_j1_rotation.xacro" />
+
+  <!-- J2: lift the upper arm about the shoulder axis. -->
+  <xacro:include filename="parts/02_j2_shoulder.xacro" />
+
+  <!-- J3: bend the forearm at the elbow. -->
+  <xacro:include filename="parts/03_j3_elbow.xacro" />
+
+  <!-- J4: bend the wrist. -->
+  <xacro:include filename="parts/04_j4_wrist_bend.xacro" />
+
+  <!-- J5: rotate the tool, then locate its mounting face. -->
+  <xacro:include filename="parts/05_j5_tool_rotation.xacro" />
+
+  <!-- Fixed gripper frame and gripping reference point. -->
+  <xacro:include filename="parts/06_gripper_mount.xacro" />
+
+  <!-- Opposed fingers and linked pinion; no actuator is selected. -->
+  <xacro:include filename="parts/07_gripper_fingers.xacro" />
+
+  <!-- Motor rotor visualization for the two belt drives. -->
+  <xacro:include filename="parts/08_motor_visuals.xacro" />
+</robot>

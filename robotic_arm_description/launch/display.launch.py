@@ -1,4 +1,5 @@
 from pathlib import Path
+import xacro
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -8,7 +9,8 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     share = Path(get_package_share_directory('robotic_arm_description'))
-    description = (share / 'urdf/robot.urdf').read_text()
+    # Expand the small per-joint files into the complete description for ROS.
+    description = xacro.process_file(str(share / 'urdf/robot.urdf.xacro')).toxml()
     demo = LaunchConfiguration('demo')
     return LaunchDescription([
         DeclareLaunchArgument('demo', default_value='false', description='Publish preview poses instead of sliders; no hardware commands.'),

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Opposed fingers and linked pinion; no actuator is selected. Distances in meters; angles in radians. -->
+  <!-- right_jaw: a rigid assembly of parts. The mesh supplies its shape; visual is appearance, collision is contact geometry. -->
+  <link name="right_jaw">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/right_jaw.stl" />
+      </geometry>
+      <material name="right_jaw_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/right_jaw.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- left_jaw: a rigid assembly of parts. The mesh supplies its shape; visual is appearance, collision is contact geometry. -->
+  <link name="left_jaw">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/left_jaw.stl" />
+      </geometry>
+      <material name="left_jaw_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/left_jaw.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- gripper_pinion: a rigid assembly of parts. The mesh supplies its shape; visual is appearance, collision is contact geometry. -->
+  <link name="gripper_pinion">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/gripper_pinion.stl" />
+      </geometry>
+      <material name="gripper_pinion_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/gripper_pinion.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- gripper_opening: connects gripper_base to right_jaw. Origin locates the joint in the parent frame. Axis gives the movement direction in the joint frame. Travel: 0 to 30 mm per finger; total opening is twice this value. -->
+  <joint name="gripper_opening" type="prismatic">
+    <parent link="gripper_base" />
+    <child link="right_jaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.03" effort="0" velocity="0.02" />
+  </joint>
+  <!-- left_jaw_mimic: connects gripper_base to left_jaw. Origin locates the joint in the parent frame. Axis gives the movement direction in the joint frame. Travel: 0 to 30 mm per finger; total opening is twice this value. Mimic makes this movement follow another joint automatically. -->
+  <joint name="left_jaw_mimic" type="prismatic">
+    <parent link="gripper_base" />
+    <child link="left_jaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0.03" effort="0" velocity="0.02" />
+    <mimic joint="gripper_opening" multiplier="1" offset="0" />
+  </joint>
+  <!-- gripper_pinion_mimic: connects gripper_base to gripper_pinion. Origin locates the joint in the parent frame. Axis gives the movement direction in the joint frame. Range: -95.5 to 0.0 degrees. Mimic makes this movement follow another joint automatically. -->
+  <joint name="gripper_pinion_mimic" type="revolute">
+    <parent link="gripper_base" />
+    <child link="gripper_pinion" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.6666666666666667" upper="0" effort="0" velocity="0.5235987755982988" />
+    <mimic joint="gripper_opening" multiplier="-55.55555555555556" offset="0" />
+  </joint>
+</robot>

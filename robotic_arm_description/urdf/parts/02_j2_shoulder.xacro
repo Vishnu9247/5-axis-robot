@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- J2: lift the upper arm about the shoulder axis. Distances in meters; angles in radians. -->
+  <!-- upper_arm_link: a rigid assembly of parts. The mesh supplies its shape; visual is appearance, collision is contact geometry. -->
+  <link name="upper_arm_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/upper_arm_link.stl" />
+      </geometry>
+      <material name="upper_arm_link_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/upper_arm_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- j2: connects shoulder_link to upper_arm_link. Origin locates the joint in the parent frame. Axis gives the movement direction in the joint frame. Range: -30.0 to 90.0 degrees. -->
+  <joint name="j2" type="revolute">
+    <parent link="shoulder_link" />
+    <child link="upper_arm_link" />
+    <origin xyz="0 0 0.257468465415" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-0.5235987755982988" upper="1.5707963267948966" effort="0" velocity="0.5235987755982988" />
+  </joint>
+</robot>

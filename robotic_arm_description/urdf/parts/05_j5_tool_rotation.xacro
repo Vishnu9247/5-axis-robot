@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- J5: rotate the tool, then locate its mounting face. Distances in meters; angles in radians. -->
+  <!-- tool_link: a rigid assembly of parts. The mesh supplies its shape; visual is appearance, collision is contact geometry. -->
+  <link name="tool_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/tool_link.stl" />
+      </geometry>
+      <material name="tool_link_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/tool_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- tool_flange: reference frame only; it has no visible shape. -->
+  <link name="tool_flange" />
+  <!-- j5: connects wrist_link to tool_link. Origin locates the joint in the parent frame. Axis gives the movement direction in the joint frame. Range: -160.0 to 160.0 degrees. -->
+  <joint name="j5" type="revolute">
+    <parent link="wrist_link" />
+    <child link="tool_link" />
+    <origin xyz="0.145883153243 0.0455 -0.00584" rpy="0 0 0" />
+    <axis xyz="-0.999199679744 0 0.04" />
+    <limit lower="-2.792526803190927" upper="2.792526803190927" effort="0" velocity="0.5235987755982988" />
+  </joint>
+  <!-- tool_flange_fixed: connects tool_link to tool_flange. Origin locates the joint in the parent frame. -->
+  <joint name="tool_flange_fixed" type="fixed">
+    <parent link="tool_link" />
+    <child link="tool_flange" />
+    <origin xyz="0.0359711884708 0 -0.00144" rpy="-1.61080700115 0 -1.57079632679" />
+  </joint>
+</robot>

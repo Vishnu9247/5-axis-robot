@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Motor rotor visualization for the two belt drives. Distances in meters; angles in radians. -->
+  <!-- base_motor_rotor: a rigid assembly of parts. The mesh supplies its shape; visual is appearance, collision is contact geometry. -->
+  <link name="base_motor_rotor">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/base_motor_rotor.stl" />
+      </geometry>
+      <material name="base_motor_rotor_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/base_motor_rotor.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- shoulder_motor_rotor: a rigid assembly of parts. The mesh supplies its shape; visual is appearance, collision is contact geometry. -->
+  <link name="shoulder_motor_rotor">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/shoulder_motor_rotor.stl" />
+      </geometry>
+      <material name="shoulder_motor_rotor_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/shoulder_motor_rotor.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- j1_motor_rotation: connects base_link to base_motor_rotor. Origin locates the joint in the parent frame. Axis gives the movement direction in the joint frame. Range: -687.5 to 687.5 degrees. Mimic makes this movement follow another joint automatically. -->
+  <joint name="j1_motor_rotation" type="revolute">
+    <parent link="base_link" />
+    <child link="base_motor_rotor" />
+    <origin xyz="0.0724684654151 0 0.072" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-12" upper="12" effort="0" velocity="0.5235987755982988" />
+    <mimic joint="j1" multiplier="4" offset="0" />
+  </joint>
+  <!-- j2_motor_rotation: connects shoulder_link to shoulder_motor_rotor. Origin locates the joint in the parent frame. Axis gives the movement direction in the joint frame. Range: -687.5 to 687.5 degrees. Mimic makes this movement follow another joint automatically. -->
+  <joint name="j2_motor_rotation" type="revolute">
+    <parent link="shoulder_link" />
+    <child link="shoulder_motor_rotor" />
+    <origin xyz="0 0.051 0.185" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-12" upper="12" effort="0" velocity="0.5235987755982988" />
+    <mimic joint="j2" multiplier="-4" offset="0" />
+  </joint>
+</robot>
