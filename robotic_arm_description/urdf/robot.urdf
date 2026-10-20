@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="compact_five_axis_arm">
+  <link name="world" />
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/base_link.stl" />
+      </geometry>
+      <material name="base_link_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/base_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="shoulder_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/shoulder_link.stl" />
+      </geometry>
+      <material name="shoulder_link_color">
+        <color rgba="0.85 0.32 0.12 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/shoulder_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="upper_arm_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/upper_arm_link.stl" />
+      </geometry>
+      <material name="upper_arm_link_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/upper_arm_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="forearm_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/forearm_link.stl" />
+      </geometry>
+      <material name="forearm_link_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/forearm_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="wrist_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/wrist_link.stl" />
+      </geometry>
+      <material name="wrist_link_color">
+        <color rgba="0.85 0.32 0.12 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/wrist_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="tool_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/tool_link.stl" />
+      </geometry>
+      <material name="tool_link_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/tool_link.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="base_motor_rotor">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/base_motor_rotor.stl" />
+      </geometry>
+      <material name="base_motor_rotor_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/base_motor_rotor.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="shoulder_motor_rotor">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/shoulder_motor_rotor.stl" />
+      </geometry>
+      <material name="shoulder_motor_rotor_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/shoulder_motor_rotor.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="gripper_base">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/gripper_base.stl" />
+      </geometry>
+      <material name="gripper_base_color">
+        <color rgba="0.85 0.32 0.12 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/gripper_base.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="right_jaw">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/right_jaw.stl" />
+      </geometry>
+      <material name="right_jaw_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/right_jaw.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_jaw">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/left_jaw.stl" />
+      </geometry>
+      <material name="left_jaw_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/left_jaw.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="gripper_pinion">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/gripper_pinion.stl" />
+      </geometry>
+      <material name="gripper_pinion_color">
+        <color rgba="0.18 0.30 0.46 1" />
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotic_arm_description/meshes/gripper_pinion.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="world_to_base" type="fixed">
+    <parent link="world" />
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <joint name="j1" type="revolute">
+    <parent link="base_link" />
+    <child link="shoulder_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-2.792526803190927" upper="2.792526803190927" effort="0" velocity="0.5235987755982988" />
+  </joint>
+  <joint name="j2" type="revolute">
+    <parent link="shoulder_link" />
+    <child link="upper_arm_link" />
+    <origin xyz="0 0 0.257468465415" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-0.5235987755982988" upper="1.5707963267948966" effort="0" velocity="0.5235987755982988" />
+  </joint>
+  <joint name="j3" type="revolute">
+    <parent link="upper_arm_link" />
+    <child link="forearm_link" />
+    <origin xyz="0.25 0 0" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-2.007128639793479" upper="2.007128639793479" effort="0" velocity="0.5235987755982988" />
+  </joint>
+  <joint name="j4" type="revolute">
+    <parent link="forearm_link" />
+    <child link="wrist_link" />
+    <origin xyz="0.144883953563 0.03 -0.0058" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="-1.5707963267948966" upper="1.5707963267948966" effort="0" velocity="0.5235987755982988" />
+  </joint>
+  <joint name="j5" type="revolute">
+    <parent link="wrist_link" />
+    <child link="tool_link" />
+    <origin xyz="0.145883153243 0.0455 -0.00584" rpy="0 0 0" />
+    <axis xyz="-0.999199679744 0 0.04" />
+    <limit lower="-2.792526803190927" upper="2.792526803190927" effort="0" velocity="0.5235987755982988" />
+  </joint>
+  <joint name="j1_motor_rotation" type="revolute">
+    <parent link="base_link" />
+    <child link="base_motor_rotor" />
+    <origin xyz="0.0724684654151 0 0.072" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-12" upper="12" effort="0" velocity="0.5235987755982988" />
+    <mimic joint="j1" multiplier="4" offset="0" />
+  </joint>
+  <joint name="j2_motor_rotation" type="revolute">
+    <parent link="shoulder_link" />
+    <child link="shoulder_motor_rotor" />
+    <origin xyz="0 0.051 0.185" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-12" upper="12" effort="0" velocity="0.5235987755982988" />
+    <mimic joint="j2" multiplier="-4" offset="0" />
+  </joint>
+  <link name="tool_flange" />
+  <joint name="tool_flange_fixed" type="fixed">
+    <parent link="tool_link" />
+    <child link="tool_flange" />
+    <origin xyz="0.0359711884708 0 -0.00144" rpy="-1.61080700115 0 -1.57079632679" />
+  </joint>
+  <joint name="gripper_mount_fixed" type="fixed">
+    <parent link="tool_flange" />
+    <child link="gripper_base" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+  <joint name="gripper_opening" type="prismatic">
+    <parent link="gripper_base" />
+    <child link="right_jaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0.03" effort="0" velocity="0.02" />
+  </joint>
+  <joint name="left_jaw_mimic" type="prismatic">
+    <parent link="gripper_base" />
+    <child link="left_jaw" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0.03" effort="0" velocity="0.02" />
+    <mimic joint="gripper_opening" multiplier="1" offset="0" />
+  </joint>
+  <joint name="gripper_pinion_mimic" type="revolute">
+    <parent link="gripper_base" />
+    <child link="gripper_pinion" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+    <limit lower="-1.6666666666666667" upper="0" effort="0" velocity="0.5235987755982988" />
+    <mimic joint="gripper_opening" multiplier="-55.55555555555556" offset="0" />
+  </joint>
+  <link name="grasp_tcp" />
+  <joint name="grasp_tcp_fixed" type="fixed">
+    <parent link="gripper_base" />
+    <child link="grasp_tcp" />
+    <origin xyz="0 0 0.096" rpy="0 0 0" />
+  </joint>
+</robot>

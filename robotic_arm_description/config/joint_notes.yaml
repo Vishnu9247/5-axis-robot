@@ -1,0 +1,9 @@
+# Display limits only. Effort capacity is unknown. No hardware controller is supplied.
+arm_joint_limits_degrees:
+  j1: [-160, 160]
+  j2: [-30, 90]
+  j3: [-115, 115]
+  j4: [-90, 90]
+  j5: [-160, 160]
+gripper_half_opening_m: [0.0, 0.03]
+# Individual limits do not define a collision-free combined workspace.
